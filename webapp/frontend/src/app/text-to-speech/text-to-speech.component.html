@@ -1,0 +1,32 @@
+<div class="file-upload-container">
+  <h2>Upload a PDF File</h2>
+
+  <!-- Hidden File Input -->
+  <input type="file" #fileInput (change)="onFileSelected($event)" accept=".pdf" style="display: none;" />
+
+  <!-- Button to Trigger File Input -->
+  <button (click)="fileInput.click()">
+    Choose File
+  </button>
+
+  <!-- Convert Button -->
+  <button (click)="convertTextToSpeech()" [disabled]="!selectedFile">
+    Convert to Speech
+  </button>
+
+  <!-- Status Message -->
+  <p *ngIf="selectedFile">Selected file: {{ selectedFile.name }}</p>
+
+  <!-- Audio Player and Download Button -->
+  <div *ngIf="audioUrl">
+    <h3>Generated Audio</h3>
+    <audio controls>
+      <source [src]="audioUrl" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <br />
+    <a [href]="audioUrl" download="output.mp3">
+      <button>Download Audio</button>
+    </a>
+  </div>
+</div>
