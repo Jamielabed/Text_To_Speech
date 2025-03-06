@@ -39,7 +39,8 @@ testem.log
 
 # Ignore .env file
 .env
-
+#ignor audio files
+audio_files/
 # System files
 .DS_Store
 Thumbs.db

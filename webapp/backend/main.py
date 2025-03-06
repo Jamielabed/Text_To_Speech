@@ -33,6 +33,13 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 AudioSegment.converter = "ffmpeg"
 AudioSegment.ffmpeg = "ffmpeg"
 
+# Define the directory to save .mp3 files
+audio_files_dir = os.path.join(os.path.dirname(__file__), 'audio_files')
+
+# Create the directory if it doesn't exist
+if not os.path.exists(audio_files_dir):
+    os.makedirs(audio_files_dir)
+
 # Root endpoint
 @app.get("/")
 def read_root():
@@ -81,7 +88,7 @@ async def generate_audio_from_text_chunks(text_chunks, voice="alloy"):
                 input=chunk
             )
             # Save the audio chunk to a temporary file
-            chunk_filename = f"{uuid.uuid4()}.mp3"
+            chunk_filename = os.path.join(audio_files_dir, f"{uuid.uuid4()}.mp3")
             with open(chunk_filename, "wb") as chunk_file:
                 chunk_file.write(response.content)
             audio_segments.append(chunk_filename)
@@ -138,7 +145,7 @@ async def text_to_speech(
     audio_chunk_files = await generate_audio_from_text_chunks(text_chunks)
 
     # Combine the audio chunks into a single file
-    combined_audio_filename = f"{uuid.uuid4()}.mp3"
+    combined_audio_filename = os.path.join(audio_files_dir, f"{uuid.uuid4()}.mp3")
     combine_audio_files(audio_chunk_files, combined_audio_filename)
 
     # Schedule the temporary audio chunk files for deletion
