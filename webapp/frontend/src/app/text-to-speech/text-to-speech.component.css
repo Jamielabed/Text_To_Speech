@@ -1,0 +1,56 @@
+.file-upload-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+  }
+  
+  input[type="file"] {
+    display: none; /* Hide the default file input */
+  }
+  
+  .drop-zone {
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .drop-zone p {
+    margin: 0;
+    color: #007bff;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+Copy
+.progress-bar {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 20px;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
